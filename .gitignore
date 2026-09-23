@@ -20,3 +20,7 @@ artifacts/
 
 # 受保护的外部资源库（禁止纳入 TaskDesk 仓库）
 资源库/
+
+# 项目目录内隔离 SDK
+.dotnet/
+.tools/
