@@ -1,0 +1,22 @@
+# 构建输出
+bin/
+obj/
+publish/*
+!publish/.gitkeep
+
+# 运行时数据
+data/*
+!data/.gitkeep
+
+# IDE 用户状态
+.vs/
+*.user
+*.suo
+
+# 测试与临时输出
+TestResults/
+artifacts/
+*.tmp
+
+# 受保护的外部资源库（禁止纳入 TaskDesk 仓库）
+资源库/
