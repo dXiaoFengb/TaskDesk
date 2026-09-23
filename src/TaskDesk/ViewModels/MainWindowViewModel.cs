@@ -14,6 +14,7 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged
     private readonly ConfigStore _configStore;
     private readonly ResourceLibraryLocator _resourceLocator;
     private readonly ResourceLibraryBrowser _resourceBrowser = new();
+    private readonly ResourceExecutionService _resourceExecutionService = new();
     private InstallTask? _selectedTask;
     private ResourceEntry? _selectedResource;
     private string? _resourceRoot;
@@ -119,6 +120,21 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged
         }
     }
 
+    public bool CanExecuteSelectedResource => SelectedResource is not null &&
+        !SelectedResource.IsDirectory &&
+        _resourceExecutionService.CanExecute(SelectedResource.FullPath);
+
+    public string ExecuteSelectedResource()
+    {
+        if (SelectedResource is null)
+        {
+            return "未选择资源。";
+        }
+
+        _resourceExecutionService.TryStart(SelectedResource.FullPath, out var message);
+        StatusMessage = message;
+        return message;
+    }
     public string StatusMessage
     {
         get => _statusMessage;

@@ -82,4 +82,25 @@ public sealed class SmokeTests
             }
         }
     }
-}
+    [Xunit.Fact]
+    public void ResourceExecutionService_OnlyAllowsConfiguredExtensions()
+    {
+        var service = new ResourceExecutionService();
+        var root = Path.Combine(Path.GetTempPath(), "TaskDeskTests", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            var executable = Path.Combine(root, "tool.exe");
+            var textFile = Path.Combine(root, "notes.txt");
+            File.WriteAllText(executable, string.Empty);
+            File.WriteAllText(textFile, string.Empty);
+
+            Xunit.Assert.True(service.CanExecute(executable));
+            Xunit.Assert.False(service.CanExecute(textFile));
+            Xunit.Assert.False(service.TryStart(Path.Combine(root, "missing.exe"), out _));
+        }
+        finally
+        {
+            Directory.Delete(root, true);
+        }
+    }}

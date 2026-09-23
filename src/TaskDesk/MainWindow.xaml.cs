@@ -43,7 +43,25 @@ public partial class MainWindow : Window
         }
     }
 
-    private void ResourceList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e) => ViewModel.OpenSelectedResource();
+    private void ResourceList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if (ViewModel.SelectedResource is { IsDirectory: false } resource && ViewModel.CanExecuteSelectedResource)
+        {
+            var result = System.Windows.MessageBox.Show(this,
+                $"确认以普通用户权限启动以下资源？\n\n{resource.FullPath}\n\nTaskDesk 不会修改该文件。",
+                "确认启动资源",
+                System.Windows.MessageBoxButton.YesNo,
+                System.Windows.MessageBoxImage.Warning);
+            if (result == System.Windows.MessageBoxResult.Yes)
+            {
+                ViewModel.ExecuteSelectedResource();
+            }
+
+            return;
+        }
+
+        ViewModel.OpenSelectedResource();
+    }
 
     private void SortTasks_Click(object sender, RoutedEventArgs e) => ViewModel.SortTasks();
 
