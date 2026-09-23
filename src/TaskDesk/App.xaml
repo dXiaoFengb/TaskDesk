@@ -6,5 +6,6 @@
         <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FFF7F7F7" />
         <SolidColorBrush x:Key="PanelBackgroundBrush" Color="#FFFFFFFF" />
         <SolidColorBrush x:Key="BorderBrush" Color="#FFD6D6D6" />
+        <SolidColorBrush x:Key="ForegroundBrush" Color="#FF202020" />
     </Application.Resources>
 </Application>
