@@ -11,7 +11,7 @@ TaskDesk 是面向 Windows 11 x64 的便携式装机任务管理器。它采用�
 - 技术栈：C# WPF + .NET 8
 - 目标平台：Windows 11 x64
 - 发布方式：self-contained single-file
-- 发布目录：EXE 同级 `publish\\`，覆盖式输出
+- 启动入口：软件根目录 `TaskDesk.exe`，覆盖式输出
 - 起始版本：`v1.0.0`
 - 数据文件：EXE 同级 `data\\tasks.json`
 - 资源库：按 `config.json` 的相对路径、同级「资源库」文件夹、目录选择框的顺序解析
@@ -44,7 +44,7 @@ TaskDesk/
 ├─ src/                 # WPF 源码
 ├─ tests/               # 单元与集成测试
 ├─ data/                # 运行时 tasks.json（按需自动创建）
-├─ publish/             # 覆盖式发布输出
+├─ TaskDesk.exe          # 根目录启动入口（发布后生成）
 ├─ TASK.md              # 已确认需求
 ├─ CONSTRAINTS.md       # 项目红线与加严约束
 ├─ VERSION.md           # 版本唯一来源
@@ -60,7 +60,7 @@ TaskDesk/
 dotnet restore
 dotnet build -c Release
 dotnet test -c Release
-dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o publish
+dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true
 ```
 
 不生成 zip，不打包安装器。发布前必须在 Windows 11 x64 环境验证直接启动、主题读取、资源库解析、任务持久化和只读目录降级。

@@ -52,14 +52,14 @@
 
 - 源代码、测试代码、README、需求与交接文档；
 - Windows 11 x64 self-contained single-file 可运行产物；
-- 发布目录为 EXE 同级 `publish\\`，采用覆盖式输出；
+- 启动入口为软件根目录 `TaskDesk.exe`，采用覆盖式输出；
 - 版本号从 `v1.0.0` 起，版本信息集中在 `VERSION.md`；
 - 初始化并启用 Git，提交信息遵循项目中文提交规则，`push` 必须单独授权；
 - 不生成 zip，不提供安装器。
 
 ## 五、怎么验收
 
-- 在 Windows 11 x64 环境直接启动 `publish\\TaskDesk.exe`，无需预装 .NET；
+- 在 Windows 11 x64 环境直接启动软件根目录 `TaskDesk.exe`，无需预装 .NET；
 - 软件根目录为 EXE 所在目录，资源库按 `config.json` 相对路径、同级「资源库」目录、目录选择框的顺序解析；
 - 地址栏固定显示资源库根路径（相对软件根目录），不可导航；
 - `data\\tasks.json` 能自动创建并保存任务；目录不可写时进入只读运行模式且不回退写入其他目录；

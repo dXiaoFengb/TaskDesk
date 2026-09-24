@@ -15,7 +15,7 @@
         <StackPanel Grid.Row="0" Background="{DynamicResource PanelBackgroundBrush}">
             <DockPanel Margin="12,10,12,6">
                 <TextBox DockPanel.Dock="Right" Width="270" Height="30" Margin="12,0,0,0" IsReadOnly="True" Text="在资源库中搜索" />
-                <TextBox Height="30" IsReadOnly="True" Text="{Binding RootAddress}" />
+                <TextBox Height="30" IsReadOnly="True" Text="{Binding RootAddress, Mode=OneWay}" />
             </DockPanel>
             <ToolBarTray>
                 <ToolBar>
